@@ -1,0 +1,11 @@
+<view class="tab-bar">
+  <view class="tab-item" bindtap="switchTab" data-url="/pages/home/home">
+    首页
+  </view>
+  <view class="tab-item" bindtap="switchTab" data-url="/pages/category/category">
+    分类
+  </view>
+  <view class="tab-item" bindtap="switchTab" data-url="/pages/profile/profile">
+    我的
+  </view>
+</view>

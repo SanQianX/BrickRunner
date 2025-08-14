@@ -1,0 +1,47 @@
+<view class="page">
+  <!-- 顶部固定区域：轮播图 + 小说分类 Tabs -->
+  <view class="top-fixed">
+    <swiper class="banner" autoplay="true" interval="3000" circular="true" indicator-dots>
+      <block wx:for="{{imgSrcs}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" mode="widthFix" class="banner-image"/>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 小说分类 Tabs 横向滚动 -->
+    <scroll-view class="novel-tabs" scroll-x="true" enable-flex="true">
+      <view
+        wx:for="{{novelTabs}}"
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="onTabClick"
+        class="tab-item {{activeTab === index ? 'active' : ''}}"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 小说章节列表（上下滚动） -->
+  <scroll-view class="chapter-list" scroll-y="true">
+    <block wx:for="{{filteredChapters}}" wx:key="id">
+      <view class="chapter-item" bindtap="onChapterClick" data-chapter="{{item}}">
+        {{item.title}}
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 固定底部搜索框（显示在 TabBar 上方） -->
+  <view class="search-box">
+    <input
+      placeholder="搜索章节或关键字"
+      bindinput="onSearchInput"
+      value="{{searchKeyword}}"
+    />
+    <button bindtap="onSearchClick">搜索</button>
+  </view>
+
+  <!-- 自定义底部导航栏 -->
+  <custom-tab-bar class="custom-tab-bar"/>
+</view>
